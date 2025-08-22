@@ -6,7 +6,7 @@
 # use "screen -L" to create a log file of the install/update
 ###################################################################################
 #
-# Last updated: August 7, 2025 (migration to meson)
+# Last updated: August 21, 2025 (migration to meson)
 
 LOG="$HOME/Development/$(date +%s).xfcegit.log"
 PREFIX="/usr"		# default is /usr/local
@@ -114,7 +114,7 @@ version () {
 	D=$(echo $1 | sed 's/.git//')
 
 	case $D in
-		xfce4-dev-tools|exo|xfdashboard)
+		xfce4-dev-tools|exo)
 			cat $SOURCE_DIR/$D/configure.ac | grep XDT_VERSION | awk -F '[' '{print " "$2"-"$3}' | tr -d '],) '
 		;;
 		*)
@@ -518,26 +518,7 @@ case $1 in
 		###
 		echo $xXFCE_APPS | grep xfce4-volumed-pulse && build xfce4-volumed-pulse
 		### xfdashboard = clutter
-
-		echo $xXFCE_APPS | grep xfdashboard &&
-		(
-			echo
-			echo
-			echo "================================================================"
-			echo xfdashboard
-			echo "================================================================"
-			### clutter
-			cd $SOURCE_DIR/xfdashboard
-				echo -n "Building xfdeshboard..." >> $LOG
-			make clean
-			./autogen.sh    --prefix=/usr \
-							    --sysconfdir=/etc \
-							    --libexecdir=/usr/lib 
-			make
-			sudo make install
-				echo "done." >> $LOG
-		)
-
+		echo $xXFCE_APPS | grep xfdashboard && build xfdashboard
 		###
 		echo $xXFCE_APPS | grep xfmpc && build xfmpc
 
