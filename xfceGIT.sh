@@ -9,70 +9,74 @@
 # Last updated: August 21, 2025 (migration to meson)
 
 LOG="$HOME/Development/$(date +%s).xfcegit.log"
-PREFIX="/usr"		# default is /usr/local
+PREFIX="/usr"			# default is /usr/local
 
 ####################################################################################
 # list of Xfce core components to build
-XFCE_CORE="    	xfce4-dev-tools.git
-		            libxfce4util.git
-		            xfconf.git
-		            libxfce4ui.git
-		            garcon.git
-		            exo.git
-		            libxfce4windowing.git
-		            xfce4-panel.git
-		            thunar.git
-		            xfce4-settings.git
-		            xfce4-session.git
-		            xfwm4.git
-		            xfdesktop.git
-		            xfce4-appfinder.git
-		            tumbler.git
-		            thunar-volman.git
-		            xfce4-power-manager.git"                            
+XFCE_CORE="    	
+	xfce4-dev-tools.git
+	libxfce4util.git
+	xfconf.git
+	libxfce4ui.git
+	garcon.git
+	exo.git
+	libxfce4windowing.git
+	xfce4-panel.git
+	thunar.git
+	xfce4-settings.git
+	xfce4-session.git
+	xfwm4.git
+	xfdesktop.git
+	xfce4-appfinder.git
+	tumbler.git
+	thunar-volman.git
+	xfce4-power-manager.git"                            
 
 # list of Xfce plugins
-XFCE_PLUGINS=" 	xfce4-clipman-plugin.git
-						xfce4-cpufreq-plugin.git
-		            xfce4-docklike-plugin.git
-		            xfce4-eyes-plugin.git
-						xfce4-fsguard-plugin.git
-		            xfce4-genmon-plugin.git
-		            xfce4-mailwatch-plugin.git
-		            xfce4-mpc-plugin.git
-		            xfce4-netload-plugin.git
-		            xfce4-notes-plugin.git
-		            xfce4-places-plugin.git
-		            xfce4-pulseaudio-plugin.git
-		            xfce4-sensors-plugin.git
-		            xfce4-systemload-plugin.git
-		            xfce4-timer-plugin.git
-		            xfce4-weather-plugin.git
-		            xfce4-whiskermenu-plugin.git
-		            xfce4-xkb-plugin.git"
+XFCE_PLUGINS=" 	
+	xfce4-clipman-plugin.git
+	xfce4-cpufreq-plugin.git
+	xfce4-docklike-plugin.git
+	xfce4-eyes-plugin.git
+	xfce4-fsguard-plugin.git
+	xfce4-genmon-plugin.git
+	xfce4-mailwatch-plugin.git
+	xfce4-mpc-plugin.git
+	xfce4-netload-plugin.git
+	xfce4-notes-plugin.git
+	xfce4-places-plugin.git
+	xfce4-pulseaudio-plugin.git
+	xfce4-sensors-plugin.git
+	xfce4-systemload-plugin.git
+	xfce4-timer-plugin.git
+	xfce4-weather-plugin.git
+	xfce4-whiskermenu-plugin.git
+	xfce4-xkb-plugin.git"
 
 # list of thunar plugins
-THUNAR_PLUGINS="	thunar-archive-plugin.git
-						thunar-media-tags-plugin.git
-			         thunar-shares-plugin.git"
+THUNAR_PLUGINS="
+	thunar-archive-plugin.git
+	thunar-media-tags-plugin.git
+	thunar-shares-plugin.git"
 
 # list of Xfce apps
-XFCE_APPS="    	catfish.git
-		            gigolo.git
-		            mousepad.git
-		            parole.git
-		            ristretto.git
-		            xfburn.git
-		            xfce4-dict.git
-		            xfce4-notifyd.git
-		            xfce4-panel-profiles.git
-		            xfce4-screenshooter.git
-		            xfce4-screensaver.git
-		            xfce4-terminal.git
-		            xfce4-taskmanager.git
-		            xfce4-volumed-pulse.git
-		            xfdashboard.git
-		            xfmpc.git"
+XFCE_APPS="
+	catfish.git
+	gigolo.git
+	mousepad.git
+	parole.git
+	ristretto.git
+	xfburn.git
+	xfce4-dict.git
+	xfce4-notifyd.git
+	xfce4-panel-profiles.git
+	xfce4-screenshooter.git
+	xfce4-screensaver.git
+	xfce4-terminal.git
+	xfce4-taskmanager.git
+	xfce4-volumed-pulse.git
+	xfdashboard.git
+	xfmpc.git"
 
 # DO NOT EDIT - listing of packages to build (with pending git changes)
 xXFCE_CORE=""
