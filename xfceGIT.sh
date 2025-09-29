@@ -225,7 +225,7 @@ case $1 in
 
 		# Build dependencies
 		sudo pacman -S \
-			base-devel xorg xorg-xinit pipewire \
+			base-devel xorg xorg-xinit pipewire wayland-protocols \
 			libxslt meson docbook-xsl \
 			gtk-doc gobject-introspection \
 			glib2-devel vala \
