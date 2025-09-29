@@ -254,7 +254,7 @@ case $1 in
 			python-psutil \
 			help2man \
 			libxrandr libxss xmlto \
-			vte3 \
+			vte3 libutempter \
 			libxmu \
 			clutter 
 
@@ -515,7 +515,7 @@ case $1 in
 		echo $xXFCE_APPS | grep xfce4-screenshooter && build xfce4-screenshooter
 		### xfce4-screensaver = libxrandr libxss xmlto
 		echo $xXFCE_APPS | grep xfce4-screensaver && build xfce4-screensaver
-		### xfce4-terminal = vte3
+		### xfce4-terminal = vte3 libutempter
 		echo $xXFCE_APPS | grep xfce4-terminal && build xfce4-terminal
 		###
 		echo $xXFCE_APPS | grep xfce4-taskmanager && build xfce4-taskmanager
