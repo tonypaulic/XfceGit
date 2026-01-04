@@ -236,7 +236,7 @@ case $1 in
 			libxklavier libcanberra xf86-input-libinput \
 			polkit xorg-iceauth \
 			libxpresent \
-			libyaml gst-plugin-gtk \
+			libyaml gst-plugin-gtk gst-plugins-{bad,ugly} \
 			gdk-pixbuf2 ffmpegthumbnailer freetype2 libgsf libopenraw poppler-glib libgepub \
 			upower \
 			qrencode \
@@ -419,7 +419,7 @@ case $1 in
 		echo $xXFCE_CORE | grep xfce4-session && build xfce4-session
 		### xfwm4 = libxpresent
 		echo $xXFCE_CORE | grep xfwm4 && build xfwm4
-		### xfdesktop = libyaml gst-plugin-gtk
+		### xfdesktop = libyaml gst-plugin-gtk gst-plugins-{bad,ugly}
 		echo $xXFCE_CORE | grep xfdesktop && build xfdesktop
 		###
 		echo $xXFCE_CORE | grep xfce4-appfinder && build xfce4-appfinder
