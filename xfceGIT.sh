@@ -8,6 +8,8 @@
 #
 # Last updated: July 16, 2025 (migration to meson)
 #				Sept 13, 2025 (sound-settings enabled)
+#				Feb 18, 2026 (xfdashboard migration to meson and fix build)
+#					***** xfdashboard requires clutter and cogl from the AUR
 
 LOG="$HOME/Development/$(date +%s).xfcegit.log"
 PREFIX="/usr"			# default is /usr/local
@@ -244,8 +246,9 @@ case $1 in
 			help2man \
             libxrandr libxss xmlto \
             vte3 \
-            libxmu \
-            clutter 
+            libxmu
+            
+		# *** dashboard requires clutter and cogl from the AUR 
 
         echo "System initialized. Now run with update-all parameter."          
 
@@ -498,25 +501,8 @@ case $1 in
         echo $xXFCE_APPS | grep xfce4-taskmanager && build xfce4-taskmanager
 			###
         echo $xXFCE_APPS | grep xfce4-volumed-pulse && build xfce4-volumed-pulse
-			### xfdashboard = clutter
-        
-		echo $xXFCE_APPS | grep xfdashboard &&
-        (
-            echo
-            echo
-            echo "================================================================"
-            echo xfdashboard
-            echo "================================================================"
-            ### clutter
-            cd $SOURCE_DIR/xfdashboard
-            make clean
-            ./autogen.sh    --prefix=/usr \
-                            --sysconfdir=/etc \
-                            --libexecdir=/usr/lib 
-            make
-            sudo make install
-        )
-
+			### xfdashboard = clutter(AUR) cogl(AUR)        
+		echo $xXFCE_APPS | grep xfdashboard && build xfdashboard
 			###
         echo $xXFCE_APPS | grep xfmpc && build xfmpc
 
