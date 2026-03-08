@@ -410,7 +410,7 @@ case $1 in
 			###
         echo $xXFCE_CORE | grep thunar-volman && build thunar-volman
 			### xfce4-power-manager = upower
-        echo $xXFCE_CORE | grep xfce4-power-manager && build xfce4-power-manager
+        echo $xXFCE_CORE | grep xfce4-power-manager && build xfce4-power-manager --sbindir=/usr/bin
 
         ###################################################################################
         ###################################################################################
