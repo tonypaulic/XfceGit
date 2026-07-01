@@ -256,14 +256,14 @@ case $1 in
             libkeybinder3 pavucontrol \
             cmake accountsservice \
             taglib \
-			zeitgeist \
+				zeitgeist \
             python-gobject python-dbus python-pexpect \
             gspell \
             dbus-glib \
             libexif \
             libburn libisofs \
-			python-psutil \
-			help2man \
+				python-psutil \
+				help2man \
             libxrandr libxss xmlto \
             vte3 \
             libxmu \
