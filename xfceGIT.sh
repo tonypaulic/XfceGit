@@ -10,6 +10,7 @@
 #				Sept 13, 2025 (sound-settings enabled)
 #				Feb 18, 2026 (xfdashboard migration to meson and fix build)
 #					***** xfdashboard requires clutter and cogl from the AUR
+#				July 1, 2026 - added xfce-wayland-protocols and xfwl4
 
 LOG="$HOME/Development/$(date +%s).xfcegit.log"
 PREFIX="/usr"			# default is /usr/local
@@ -32,7 +33,9 @@ XFCE_CORE="     xfce4-dev-tools.git
                 xfce4-appfinder.git
                 tumbler.git
                 thunar-volman.git
-                xfce4-power-manager.git"                            
+                xfce4-power-manager.git
+					 xfce-wayland-protocols.git
+					 xfwl4.git"                            
 #   gtk-xfce-engine has disappeared                
 
 # list of Xfce plugins
@@ -77,11 +80,15 @@ XFCE_APPS="     catfish.git
                 xfdashboard.git
                 xfmpc.git"
 
+# list of xfce bindings
+XFCE_BINDINGS=" xfce4-rs"
+
 # DO NOT EDIT - listing of packages to build (with pending git changes)
 xXFCE_CORE=""
 xXFCE_PLUGINS=""
 xTHUNAR_PLUGINS=""
 xXFCE_APPS=""
+xXFCE_BINDINGS=""
 
 ###################################################################################
 # directory to hold source files 
@@ -159,6 +166,13 @@ case $1 in
 			v=$(version $x)			
 			echo "  $x = $v" | sed -e 's/.git//'
 		done
+
+		echo "Xfce Bindings"
+		for x in $XFCE_BINDINGS
+		do
+			v=$(version $x)			
+			echo "  $x = $v" | sed -e 's/.git//'
+		done
 		;;
 	
 	log)
@@ -213,6 +227,11 @@ case $1 in
         do
             git clone https://gitlab.xfce.org/apps/$package
         done
+
+        for package in $XFCE_BINDINGS
+        do
+            git clone https://gitlab.xfce.org/bindings/$package
+        done
         
         # Build dependencies
         sudo pacman -S \
@@ -246,7 +265,8 @@ case $1 in
 			help2man \
             libxrandr libxss xmlto \
             vte3 \
-            libxmu
+            libxmu \
+				rust
             
 		# *** dashboard requires clutter and cogl from the AUR 
 
@@ -324,6 +344,22 @@ case $1 in
             #cd ..
         done
 	echo "xXFCE_APPS=$xXFCE_APPS" >> $LOG
+        for package in $XFCE_BINDINGS
+        do
+            p=$(echo $package | awk -F'.' '{print $1}')        
+            cd $SOURCE_DIR/$p
+            echo "################################################################################"
+            echo "### $package"            
+            git remote update
+            if [[ $(git status -uno | grep 'Your branch is up to date') ]]; then
+                echo "Nothing to do"
+            else
+                git pull https://gitlab.xfce.org/bindings/$package
+                xXFCE_APPS="$xXFCE_BINDINGS$package "
+            fi
+            #cd ..
+        done
+	echo "xXFCE_APPS=$xXFCE_BINDINGS" >> $LOG
         ###################################################################################
 
         ###################################################################################
@@ -334,6 +370,7 @@ case $1 in
             xXFCE_PLUGINS=$XFCE_PLUGINS 
             xTHUNAR_PLUGINS=$THUNAR_PLUGINS
             xXFCE_APPS=$XFCE_APPS
+				xXFCE_BINDINGS=$XFCE_BINDINGS
 		fi
         ###################################################################################
 
@@ -392,7 +429,7 @@ case $1 in
 			### libxfce4windowing = libwnck3 libdisplay-info wayland wlr-protocols
         echo $xXFCE_CORE | grep libxfce4windowing && build libxfce4windowing
 			### xfce4-panel = gtk-layer-shell libdbusmenu-gtk3
-	    echo $xXFCE_CORE | grep xfce4-panel && build xfce4-panel
+	     echo $xXFCE_CORE | grep xfce4-panel && build xfce4-panel
 			### thunar = libnotify
         echo $xXFCE_CORE | grep -e "thunar.git " -e "thunar.git$" && build thunar
 			### xfce4-settings = libxklavier libcanberra xf86-input-libinput
@@ -411,6 +448,11 @@ case $1 in
         echo $xXFCE_CORE | grep thunar-volman && build thunar-volman
 			### xfce4-power-manager = upower
         echo $xXFCE_CORE | grep xfce4-power-manager && build xfce4-power-manager --sbindir=/usr/bin
+			### xfce-wayland-protocols
+        echo $xXFCE_CORE | grep xfce-wayland-protocols && build xfce-wayland-protocols
+		  cp Development/Xfce.git/xfce-wayland-protocols/*.xml ~/Development/Xfce.git/xfwl4/resources/
+			### xfwl4 = rust
+        echo $xXFCE_CORE | grep xfwl4 && build xfwl4 -Duse-system-gettext=true
 
         ###################################################################################
         ###################################################################################
