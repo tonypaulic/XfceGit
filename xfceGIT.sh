@@ -34,7 +34,6 @@ XFCE_CORE="     xfce4-dev-tools.git
                 tumbler.git
                 thunar-volman.git
                 xfce4-power-manager.git
-					 xfce-wayland-protocols.git
 					 xfwl4.git"                            
 #   gtk-xfce-engine has disappeared                
 
@@ -110,6 +109,7 @@ build () {
     echo $1
     echo "================================================================"
 	cd $SOURCE_DIR/$1	
+	[[ "$1" = "xfwl4" ]] && git submodule update
 	meson setup --reconfigure build --prefix=$PREFIX $2
 	meson compile -C build
 	sudo meson install -C build
@@ -268,6 +268,11 @@ case $1 in
             vte3 \
             libxmu \
 				rust
+
+		# init xfwl4 submodule
+			cd $SOURCE_DIR/xfwl4 
+			git submodule init
+			cd	$SOURCE_DIR	
             
 		# *** dashboard requires clutter and cogl from the AUR 
 
@@ -449,9 +454,6 @@ case $1 in
         echo $xXFCE_CORE | grep thunar-volman && build thunar-volman
 			### xfce4-power-manager = upower
         echo $xXFCE_CORE | grep xfce4-power-manager && build xfce4-power-manager --sbindir=/usr/bin
-			### xfce-wayland-protocols
-        echo $xXFCE_CORE | grep xfce-wayland-protocols && build xfce-wayland-protocols
-		  cp Development/Xfce.git/xfce-wayland-protocols/*.xml ~/Development/Xfce.git/xfwl4/resources/
 			### xfwl4 = rust
         echo $xXFCE_CORE | grep xfwl4 && build xfwl4 -Duse-system-gettext=true
 
