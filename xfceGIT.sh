@@ -113,6 +113,7 @@ build () {
 	meson setup --reconfigure build --prefix=$PREFIX $2
 	meson compile -C build
 	sudo meson install -C build
+	meson compile --clean -C build
 }
 
 version () {
