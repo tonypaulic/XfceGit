@@ -81,7 +81,7 @@ XFCE_APPS="     catfish.git
                 xfmpc.git"
 
 # list of xfce bindings
-XFCE_BINDINGS=" xfce4-rs"
+XFCE_BINDINGS=""
 
 # DO NOT EDIT - listing of packages to build (with pending git changes)
 xXFCE_CORE=""
