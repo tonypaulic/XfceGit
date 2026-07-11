@@ -429,7 +429,7 @@ case $1 in
             echo "================================================================"
             ### 
             cd $SOURCE_DIR/exo
-            make clean
+            sudo make clean
             ./autogen.sh    --prefix=/usr \
             make
             sudo make install
