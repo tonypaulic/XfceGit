@@ -109,6 +109,7 @@ build () {
     echo $1
     echo "================================================================"
 	cd $SOURCE_DIR/$1	
+	[[ "$1" = "libxfce4windowing" ]] && git submodule update
 	[[ "$1" = "xfwl4" ]] && git submodule update
 	meson setup --reconfigure build --prefix=$PREFIX $2
 	meson compile -C build
@@ -269,7 +270,9 @@ case $1 in
             libxmu \
 				rust
 
-		# init xfwl4 submodule
+		# init xfce-wayland-protocol submodule
+			cd $SOURCE_DIR/libxfce4windowing
+			git submodule init
 			cd $SOURCE_DIR/xfwl4 
 			git submodule init
 			cd	$SOURCE_DIR	
