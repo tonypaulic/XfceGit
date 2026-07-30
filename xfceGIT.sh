@@ -110,6 +110,7 @@ build () {
     echo "================================================================"
 	cd $SOURCE_DIR/$1	
 	[[ "$1" == "libxfce4windowing" ]] && git submodule update
+	[[ "$1" == "xfce4-settings" ]] && git submodule update
 	[[ "$1" == "xfwl4" ]] && git submodule update
 	meson setup --reconfigure build --prefix=$PREFIX $2
 	meson compile -C build
