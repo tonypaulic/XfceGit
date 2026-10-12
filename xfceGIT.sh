@@ -6,7 +6,8 @@
 # use "screen -L" to create a log file of the install/update
 ###################################################################################
 #
-# Last updated: July 16, 2025 (migration to meson)
+# Last updated: Oct 12, 2026 (adapt for wayland changes)
+#                               July 16, 2025 (migration to meson)
 #				Sept 13, 2025 (sound-settings enabled)
 #				Feb 18, 2026 (xfdashboard migration to meson and fix build)
 #					***** xfdashboard requires clutter and cogl from the AUR
@@ -24,10 +25,10 @@ XFCE_CORE="     xfce4-dev-tools.git
                 garcon.git
                 exo.git
                 libxfce4windowing.git
+		xfce4-session.git
                 xfce4-panel.git
                 thunar.git
                 xfce4-settings.git
-                xfce4-session.git
                 xfwm4.git
                 xfdesktop.git
                 xfce4-appfinder.git
@@ -112,6 +113,7 @@ build () {
 	[[ "$1" == "libxfce4windowing" ]] && git submodule update
 	[[ "$1" == "xfce4-settings" ]] && git submodule update
 	[[ "$1" == "xfwl4" ]] && git submodule update
+	[[ "$1" == "xfce4-power-manager ]] && git submodule update
 	meson setup --reconfigure build --prefix=$PREFIX $2
 	meson compile -C build
 	sudo meson install -C build
@@ -275,6 +277,10 @@ case $1 in
 			cd $SOURCE_DIR/libxfce4windowing
 			git submodule init
 			cd $SOURCE_DIR/xfwl4 
+			git submodule init
+			cd $SOURCE_DIR/xfce4-settings
+			git submodule init
+			cd $SOURCE_DIR/xfce4-power-manager
 			git submodule init
 			cd	$SOURCE_DIR	
             
