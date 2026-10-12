@@ -118,6 +118,7 @@ build () {
 	meson compile -C build
 	sudo meson install -C build
 	meson compile --clean -C build
+	[[ "$1" == "xfwl4" ]] && rm -rf build
 }
 
 version () {
