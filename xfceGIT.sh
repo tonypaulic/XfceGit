@@ -25,7 +25,7 @@ XFCE_CORE="     xfce4-dev-tools.git
                 garcon.git
                 exo.git
                 libxfce4windowing.git
-		xfce4-session.git
+				xfce4-session.git
                 xfce4-panel.git
                 thunar.git
                 xfce4-settings.git
@@ -252,7 +252,7 @@ case $1 in
             libxklavier libcanberra xf86-input-libinput \
             polkit xorg-iceauth \
             libxpresent \
-            libyaml \
+            libyaml gst-plugin-gtk \
             gdk-pixbuf2 ffmpegthumbnailer freetype2 libgsf libopenraw poppler-glib libgepub \
             upower \
             qrencode \
@@ -261,18 +261,19 @@ case $1 in
             libkeybinder3 pavucontrol \
             cmake accountsservice \
             taglib \
-				zeitgeist \
+			zeitgeist \
             python-gobject python-dbus python-pexpect \
             gspell \
             dbus-glib \
             libexif \
             libburn libisofs \
-				python-psutil \
-				help2man \
+			python-psutil \
+			help2man \
             libxrandr libxss xmlto \
             vte3 \
             libxmu \
-				rust
+			rust \
+			xdg-user-dirs vim 
 
 		# init xfce-wayland-protocol submodule
 			cd $SOURCE_DIR/libxfce4windowing
@@ -455,7 +456,7 @@ case $1 in
         echo $xXFCE_CORE | grep xfce4-settings && build xfce4-settings "-Dsound-settings=true"
 			### xfwm4 = libxpresent
         echo $xXFCE_CORE | grep xfwm4 && build xfwm4
-			### xfdesktop = libyaml
+			### xfdesktop = libyaml gst-plugin-gtk
         echo $xXFCE_CORE | grep xfdesktop && build xfdesktop
 			###
         echo $xXFCE_CORE | grep xfce4-appfinder && build xfce4-appfinder
