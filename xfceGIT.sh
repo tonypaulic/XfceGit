@@ -445,14 +445,14 @@ case $1 in
 
 			### libxfce4windowing = libwnck3 libdisplay-info wayland wlr-protocols
         echo $xXFCE_CORE | grep libxfce4windowing && build libxfce4windowing
+			### xfce4-session = polkit xorg-iceauth
+        echo $xXFCE_CORE | grep xfce4-session && build xfce4-session
 			### xfce4-panel = gtk-layer-shell libdbusmenu-gtk3
 	     echo $xXFCE_CORE | grep xfce4-panel && build xfce4-panel
 			### thunar = libnotify
         echo $xXFCE_CORE | grep -e "thunar.git " -e "thunar.git$" && build thunar
 			### xfce4-settings = libxklavier libcanberra xf86-input-libinput
         echo $xXFCE_CORE | grep xfce4-settings && build xfce4-settings "-Dsound-settings=true"
-			### xfce4-session = polkit xorg-iceauth
-        echo $xXFCE_CORE | grep xfce4-session && build xfce4-session
 			### xfwm4 = libxpresent
         echo $xXFCE_CORE | grep xfwm4 && build xfwm4
 			### xfdesktop = libyaml
