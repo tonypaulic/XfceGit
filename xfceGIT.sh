@@ -12,6 +12,7 @@
 #				Feb 18, 2026 (xfdashboard migration to meson and fix build)
 #					***** xfdashboard requires clutter and cogl from the AUR
 #				July 1, 2026 - added xfce-wayland-protocols and xfwl4
+#				Nov 22, 2026 - convert xfce4-dev-tools to meson builds
 
 LOG="$HOME/Development/$(date +%s).xfcegit.log"
 PREFIX="/usr"			# default is /usr/local
@@ -403,23 +404,8 @@ case $1 in
         ###################################################################################
         ###################################################################################
 
-        echo $xXFCE_CORE | grep xfce4-dev-tools && 
-        (
-            echo
-            echo
-            echo "================================================================"
-            echo xfce4-dev-tools
-            echo "================================================================"
-            ### libsxlt meson docbook-xsl
-            cd $SOURCE_DIR/xfce4-dev-tools
-            make clean
-            ./autogen.sh    --prefix=/usr \
-                            --sysconfdir=/etc \
-                            --libexecdir=/usr/lib 
-            make
-            sudo make install
-        )
-		
+			###
+        echo $xXFCE_CORE | grep xfce4-dev-tools && build xfce4-dev-tools
 			### libxfce4util = gtk-doc gobject-introspection
         echo $xXFCE_CORE | grep libxfce4util && build libxfce4util
 			### xfconf = glib2-devel vala
