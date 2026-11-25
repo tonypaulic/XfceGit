@@ -13,6 +13,7 @@
 #					***** xfdashboard requires clutter and cogl from the AUR
 #				July 1, 2026 - added xfce-wayland-protocols and xfwl4
 #				Nov 22, 2026 - convert xfce4-dev-tools to meson builds
+#               Nov 24, 2026 - add 2 thunar plugins (vcs & disk-usage)
 
 LOG="$HOME/Development/$(date +%s).xfcegit.log"
 PREFIX="/usr"			# default is /usr/local
@@ -61,7 +62,9 @@ XFCE_PLUGINS="  xfce4-clipman-plugin.git
 # list of thunar plugins
 THUNAR_PLUGINS="thunar-archive-plugin.git
                 thunar-media-tags-plugin.git
-                thunar-shares-plugin.git"
+                thunar-shares-plugin.git
+				thunar-vcs-plugin.git
+				thunar-disk-usage-plugin.git"
 
 # list of Xfce apps
 XFCE_APPS="     catfish.git
@@ -509,6 +512,10 @@ case $1 in
 			###
 			# info on setting up samba: http://goodies.xfce.org/projects/thunar-plugins/thunar-shares-plugin
         echo $xTHUNAR_PLUGINS | grep thunar-shares-plugin && build thunar-shares-plugin
+			###
+        echo $xTHUNAR_PLUGINS | grep thunar-vcs-plugin && build thunar-vcs-plugin
+			###
+        echo $xTHUNAR_PLUGINS | grep thunar-disk-usage-plugin && build thunar-disk-usage-plugin
 
         ###################################################################################
         ###################################################################################
